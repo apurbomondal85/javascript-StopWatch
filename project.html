@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .stopWatch{
+            width: 500px;
+            text-align: center;
+            padding: 5rem;
+            background-color: #540088;
+            color: white;
+            border-radius: 1rem;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.349);
+        }
+        .control{
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+            margin: 0 auto;
+            margin-top: 2rem;
+        }
+        button{
+            outline: none;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .start{
+            background-color: rgb(0, 142, 142);
+        }
+        .stop{
+            background-color: rgb(174, 0, 148);
+        }
+        .reset{
+            background-color: rgb(40, 160, 0);
+        }
+    </style>
+</head>
+<body>
+    <!--======================== 
+        vanilla javascript stopWatch
+     ============================-->
+     <div class="stopWatch">
+        <h1>Vanilla javascript Stopwatch</h1>
+        <h1 class="counter"><span class="min">00</span>
+            :
+            <span class="sec">00</span>
+        </h1>
+        <div class="control">
+            <button class="start" onclick="start()">Start</button>
+            <button class="stop" onclick="stop()">Stop</button>
+            <button class="reset" onclick="reset()">Reset</button>
+        </div>
+     </div>
+
+     <script>
+        let min = document.querySelector('.min');
+        let sec = document.querySelector('.sec');
+        var Interval;
+        
+        function start() {
+            clearInterval(Interval);
+            Interval = setInterval(stopWatch, 10);
+        }
+        function stop() {
+            clearInterval(Interval);
+        }
+        function reset() {
+        clearInterval(Interval);
+        count = "00";
+        count2 = "00";
+        min.innerHTML = count2;
+        sec.innerHTML = count;
+        };
+        var count = 0;
+        var count2 = 0;
+        function stopWatch() {
+                count++;
+                if (count < 10) {
+                    sec.innerHTML = ` 0${count} `;
+                }else if (count == 100) {
+                        count = 0;
+                        count2++;
+                }else{
+                    sec.innerHTML = count;
+                }
+                if (count2 < 10) {
+                    min.innerHTML = ` 0${count2}`;
+                }else if (count2 == 100) {
+                        count2 = 0;
+                }else{
+                    min.innerHTML = count2;
+                }
+        }
+
+     </script>
+</body>
+</html>
